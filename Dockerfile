@@ -2,7 +2,7 @@ FROM ubuntu:24.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-ENV pip_packages "ansible"
+ENV pip_packages=ansible
 
 # Install dependencies.
 RUN apt-get update \
