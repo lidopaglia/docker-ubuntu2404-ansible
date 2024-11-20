@@ -64,10 +64,21 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Extract metadata
+        id: metadata
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest
+            type=sha          
+
       - name: Build and push container image
         uses: docker/build-push-action@v5
         with:
+          cache-from: type=gha
+          cache-to: type=gha
           context: ./
           file: Dockerfile
           push: true
-          tags: ${{ github.repository }}:latest
+          tags: ${{ steps.metadata.outputs.tags }}
