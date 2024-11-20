@@ -50,7 +50,7 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-        
+
       - name: Setup QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -71,7 +71,7 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=latest
-            type=sha          
+            type=sha
 
       - name: Build and push container image
         uses: docker/build-push-action@v5
@@ -81,4 +81,5 @@ jobs:
           context: ./
           file: Dockerfile
           push: true
+          labels: ${{ steps.metadata.outputs.labels }}
           tags: ${{ steps.metadata.outputs.tags }}

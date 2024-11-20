@@ -1,5 +1,9 @@
 FROM ubuntu:24.04
 
+LABEL org.opencontainers.image.source="https://github.com/lidopaglia/docker-ubuntu2404-ansible"
+LABEL org.opencontainers.image.description="Docker container for Ansible playbook and role testing"
+LABEL org.opencontainers.image.licenses="MIT"
+
 ARG DEBIAN_FRONTEND=noninteractive
 
 ENV pip_packages=ansible
