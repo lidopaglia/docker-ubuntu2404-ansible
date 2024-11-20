@@ -81,5 +81,6 @@ jobs:
           context: ./
           file: Dockerfile
           push: true
+          platforms: linux/amd64,linux/arm64
           labels: ${{ steps.metadata.outputs.labels }}
           tags: ${{ steps.metadata.outputs.tags }}
